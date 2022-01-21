@@ -1,0 +1,49 @@
+<section class="vh-100" style="background-color: #8b9a60">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="./assets/images/login2.png" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219"></i>
+                                    <span class="h1 fw-bold mb-0">My Store: Customer Login</span>
+                                </div>
+
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">Please sign in for orders.</h5>
+
+                                <div class="form-outline mb-4">
+                                    <input #username="ngModel" type="text" name="username" [(ngModel)]="this.auth_request.username" class="form-control form-control-lg" placeholder="Username" required minlength="4" />
+                                    <div class="mt-2" *ngIf="username.invalid && (username.dirty || username.touched)">
+                                        <div class="alert alert-danger" *ngIf="username.errors?.['required']">The username field is required.</div>
+                                        <div class="alert alert-danger mb-3" *ngIf="username.errors?.['minlength']">The username field has to be longer than 4 characters.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input #password="ngModel" type="password" name="password" [(ngModel)]="this.auth_request.password" class="form-control form-control-lg" placeholder="Password" required minlength="4" />
+                                    <div class="mt-2" *ngIf="password.invalid && (password.dirty || password.touched)">
+                                        <div class="alert alert-danger" *ngIf="password.errors?.['required']">The password field is required.</div>
+                                        <div class="alert alert-danger mb-3" *ngIf="password.errors?.['minlength']">The password field has to be longer than 4 characters.</div>
+                                    </div>
+                                </div>
+
+                                <div class="pt-1 mb-4">
+                                    <button class="btn btn-primary btn-lg btn-block" type="button" style="margin-right: 10px" (click)="onSubmit()" [disabled]="password.errors || username.errors">Login</button>
+                                    <button class="btn btn-danger btn-lg btn-block" type="button" (click)="router.navigate(['/catalog'])">Back</button>
+                                </div>
+
+                                <a href="#!" class="small text-muted">Terms of Use </a>
+                                <a href="#!" class="small text-muted"> Privacy Policy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
