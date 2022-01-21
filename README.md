@@ -48,7 +48,7 @@ The web service was based on Angular + TypeScript Syntax.
 - Execute the **http-server** tool within the project folder. (**ex. http-server dist**)
 - Via browser go to **http://localhost:8080**
 
-##Other Notes
+## Other Notes
 
 - This service does not have an API backend. It does have mock api service to test UI mechanics.
 - You can test user authentication mechanics by using the below usernames.
