@@ -29,6 +29,5 @@ export class AppComponent implements OnInit {
     logout(): void {
         this.auth.logout()
         this.router.navigate(['/catalog'])
-
     }
 }

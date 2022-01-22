@@ -1,0 +1,20 @@
+<div class="col mb-5">
+    <div class="card">
+        <img class="card-img-top" [src]="product.url" alt="..." />
+        <div class="card-body p-4">
+            <div class="text-center">
+                <h5 class="fw-bolder">{{ product.nm }}</h5>
+                ${{ product.price }}
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="form-group">
+                <select #quantity class="form-select form-select-sm">
+                    <option [ngValue]="i" *ngFor="let in of counter(20); let i = index">{{ i === 0 ? 'Select Quantity' : i }}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px" (click)="this.cart.add(product, quantity)">Add Cart</button>
+            <button class="btn btn-warning btn-sm" style="width: 100%; margin-top: 5px" (click)="router.navigate(['/product/' + product.id])">More Info</button>
+        </div>
+    </div>
+</div>

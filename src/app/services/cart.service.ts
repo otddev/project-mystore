@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { NGXLogger } from 'ngx-logger'
 import { NotificationService } from './alerts.service'
 import { OrderCart } from '../models/order'
@@ -12,8 +12,6 @@ export class CartService {
 
     k: string = 'cart'
 
-    @Output() event_update: EventEmitter<OrderCart[]> = new EventEmitter()
-
     constructor(private logger: NGXLogger, private alert: NotificationService) {
         this.product_count = 0
     }
@@ -26,7 +24,7 @@ export class CartService {
             this.product_count = 0
         }
         this.logger.info(items)
-        this.event_update.emit(items)
+        //this.event_update.emit(items)
     }
 
     get(): OrderCart[] {
@@ -81,7 +79,7 @@ export class CartService {
         this.set(items)
         this.logger.info(items)
         this.product_count = items.filter((i) => !i.deleted).length
-        this.event_update.emit(items)
+        //this.event_update.emit(items)
         this.logger.info(`The cart has been updated.`)
         this.alert.showInfo(`The cart has been updated.`, `Cart Updated`)
     }
@@ -96,7 +94,7 @@ export class CartService {
         items = items.filter((i) => !i.deleted)
         this.set(items)
         this.product_count = items.length
-        this.event_update.emit(items)
+        //this.event_update.emit(items)
         this.logger.warn(`A product has been removed from cart.`)
         this.alert.showWarning(`A product has been removed from cart.`, `Cart Updated`)
     }
@@ -110,7 +108,7 @@ export class CartService {
             this.product_count = 0
         }
         this.logger.info(items)
-        this.event_update.emit(items)
+        //this.event_update.emit(items)
         this.logger.info(`The cart items have been cleared.`)
         this.alert.showInfo(`The cart items have been cleared.`, `Cart Cleared`)
     }

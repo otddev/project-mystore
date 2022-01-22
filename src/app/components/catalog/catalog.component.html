@@ -1,24 +1,6 @@
 <div class="container px-4 px-lg-5 mt-5">
+    <app-catalogdisclaimer *ngIf="!hide_disclaimer" (hide_message)="hide_message_parent($event)"></app-catalogdisclaimer>
     <div class="row gx-4 gx-lg-5 row-cols-xl-3 justify-content-center">
-        <div class="col mb-5" *ngFor="let p of products">
-            <div class="card h-100">
-                <img class="card-img-top" [src]="p.url" alt="..." />
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <h5 class="fw-bolder">{{ p.nm }}</h5>
-                        ${{ p.price }}
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="form-group">
-                        <select #quantity class="form-select form-select-sm">
-                            <option [ngValue]="i" *ngFor="let in of counter(20); let i = index">{{ i === 0 ? 'Select Quantity' : i }}</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary btn-sm" style="width: 100%; margin-top: 5px" (click)="this.cart.add(p, quantity)">Add Cart</button>
-                    <button class="btn btn-warning btn-sm" style="width: 100%; margin-top: 5px" (click)="router.navigate(['/product/' + p.id])">More Info</button>
-                </div>
-            </div>
-        </div>
+        <app-catalogitem *ngFor="let product of products" [product]="product"></app-catalogitem>
     </div>
 </div>

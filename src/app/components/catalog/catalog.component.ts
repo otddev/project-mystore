@@ -15,6 +15,8 @@ import { CartService } from '../../services/cart.service'
 export class CatalogComponent implements OnInit {
     products: Product[] = []
 
+    hide_disclaimer: boolean = false
+
     counter(i: number) {
         return new Array(i + 1)
     }
@@ -24,7 +26,7 @@ export class CatalogComponent implements OnInit {
     ngOnInit(): void {
         this.api.getProducts().subscribe(
             (data) => {
-                this.products = data
+                this.products = data.map((x) => Object.assign(x, { hide: false }))
                 this.logger.info(this.products)
             },
             (err) => {
@@ -32,5 +34,9 @@ export class CatalogComponent implements OnInit {
                 this.logger.error(err)
             }
         )
+    }
+
+    hide_message_parent(value: boolean) {
+        this.hide_disclaimer = value
     }
 }

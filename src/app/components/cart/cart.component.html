@@ -81,11 +81,12 @@
                                 aria-describedby="addr_help"
                                 required
                                 minlength="10"
+                                (ngModelChange)="checkAddress($event)"
                             />
                             <div id="addr_help" class="form-text" style="font-size: small">Tip: Shipping Address for Delivery</div>
                             <div class="mt-2" *ngIf="address.invalid && (address.dirty || address.touched)">
                                 <div class="alert alert-danger" style="height: 75%; font-size: small; align-content: center" *ngIf="address.errors?.['required']">The address field is required.</div>
-                                <div class="alert alert-danger mb-3" style="height: 75%; font-size: small; align-content: center" *ngIf="address.errors?.['minlength']">The address field has to be longer than 10 characters.</div>
+                                <div class="alert alert-danger mb-3" style="height: 75%; font-size: small; align-content: center" *ngIf="address.errors?.['minlength']">The address field has to be 10 characters or longer.</div>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -98,15 +99,18 @@
                                 type="text"
                                 class="form-control"
                                 style="font-size: small"
+                                pattern="^\d+$"
                                 aria-describedby="credit_help"
                                 required
                                 minlength="16"
                                 maxlength="16"
+                                (ngModelChange)="checkCreditCard($event)"
                             />
                             <div id="credit_help" class="form-text" style="font-size: small">Tip: Payment Information</div>
                             <div class="mt-2" *ngIf="credit.invalid && (credit.dirty || credit.touched)">
                                 <div class="alert alert-danger d-inline-block" style="height: 75%; font-size: small; align-content: center" *ngIf="credit.errors?.['required']">The credit card field is required.</div>
                                 <div class="alert alert-danger mb-3" style="height: 75%; font-size: small; align-content: center" *ngIf="credit.errors?.['minlength']">The credit card field has to be 16 digits long.</div>
+                                <div class="alert alert-danger mb-3" style="height: 75%; font-size: small; align-content: center" *ngIf="credit.errors?.['pattern']">The credit card field only allows numbers</div>
                             </div>
                         </div>
                     </div>
@@ -120,7 +124,7 @@
                         </dl>
                         <hr />
                         <button type="button" class="btn btn-success btn-main" (click)="router.navigate(['/catalog'])">Continue Shopping</button>
-                        <button type="button" class="btn btn-primary btn-main mt-2" [disabled]="!this.order_cart || !this.auth.logged || this.order.address.length < 11 || this.order.credit_card.length !== 16" (click)="this.process()">
+                        <button type="button" class="btn btn-primary btn-main mt-2" [disabled]="!this.order_cart || !this.auth.logged || this.order.address.length < 10 || this.order.credit_card.length !== 16" (click)="this.process()">
                             Make Order
                         </button>
                         <button type="button" class="btn btn-danger btn-main mt-2" [disabled]="!this.order_cart || !this.auth.logged" (click)="this.deleteall()">Clear Cart</button>

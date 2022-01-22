@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr'
 import { AppRoutingModule } from './app-routing.module'
-import { SafeUrl } from './services/safeurl.service'
 import { AppComponent } from './app.component'
 import { AuthInterceptor, ErrorCatchingInterceptor } from './interceptors/http.interceptor'
 import { LoginComponent } from './components/login/login.component'
@@ -15,9 +14,11 @@ import { ProductComponent } from './components/product/product.component'
 import { NotfoundComponent } from './components/notfound/notfound.component'
 import { CartComponent } from './components/cart/cart.component'
 import { SuccessComponent } from './components/success/success.component'
+import { CatalogitemComponent } from './components/catalogitem/catalogitem.component'
+import { CatalogdisclaimerComponent } from './components/catalogdisclaimer/catalogdisclaimer.component'
 
 @NgModule({
-    declarations: [AppComponent, SafeUrl, LoginComponent, CatalogComponent, ProductComponent, NotfoundComponent, CartComponent, SuccessComponent],
+    declarations: [AppComponent, LoginComponent, CatalogComponent, ProductComponent, NotfoundComponent, CartComponent, SuccessComponent, CatalogitemComponent, CatalogdisclaimerComponent],
     imports: [
         AppRoutingModule,
         BrowserModule,

@@ -68,6 +68,18 @@ export class CartComponent implements OnInit {
         this.update()
     }
 
+    checkAddress(v: string): void {
+        if (v.length == 10) {
+            this.alert.showSuccess('The address provided is valid.', 'Address Validated')
+        }
+    }
+
+    checkCreditCard(v: string): void {
+        if (v.length == 16) {
+            this.alert.showSuccess('The credit card information is valid.', 'Credit Card Validated')
+        }
+    }
+
     process(): void {
         this.order.user_id = this.current_user.id
         this.order.total = this.order_total
