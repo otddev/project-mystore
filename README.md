@@ -48,6 +48,16 @@ The web service was based on Angular + TypeScript Syntax.
 - Execute the **http-server** tool within the project folder. (**ex. http-server dist**)
 - Via browser go to **http://localhost:8080**
 
+## Other Notes
+
+- This service does not have an API backend. It does have mock api service to test UI mechanics.
+- You can test user authentication mechanics by using the below usernames.
+
+```
+username: dummy
+note: You can use any password. This will emulate a successful authentication. If you try any other username this will emulate a unsuccessfull authentication.
+```
+
 ## Project Structure
 
 ### Components
@@ -128,14 +138,94 @@ Description: Root location for all API endpoints utilized by the web application
     { path: '**', redirectTo: '/404' }
 ```
 
-## Other Notes
+### Models
 
-- This service does not have an API backend. It does have mock api service to test UI mechanics.
-- You can test user authentication mechanics by using the below usernames.
-  
+#### OrderCart
+
+- Model structure used for temporary cart information before order processing.
 ```
-username: dummy
-note: You can use any password. This will emulate a successful authentication. If you try any other username this will emulate a unsuccessfull authentication.
+export interface OrderCart {
+product_id: number
+product_name: string
+product_price: number
+product_url: string
+product_total: number
+quantity: number
+deleted: boolean
+}
+```
+
+- Model structured used for response from creating user order.
+```
+export interface Order {
+id: number
+user_id: number
+address: string
+credit_card: string
+status: number
+total: number
+}
+```
+
+- Model structured used for create order API request.
+```
+export interface OrderRequest {
+user_id: number
+address: string
+credit_card: string
+status: number
+total: number
+}
+```
+
+- Model structured used for creation of order product list with reference to order object.
+```
+export interface OrderProduct {
+order_id: number
+product_id: number
+quantity: number
+total: number
+}
+```
+
+- Model structured used for product object information.
+```
+export interface Product {
+id: number
+nm: string
+price: number
+url: string
+description: string
+hide?: boolean
+}
+```
+
+- Model structured used for user object information.
+```
+export interface User {
+id: number
+username: string
+password: string
+firstname: string
+lastname: string
+email: string
+}
+```
+
+- Model structured used for user authentication request.
+```
+export interface UserRequest {
+username: string
+password: string
+}
+```
+
+- Model structured used for user authentication response.
+```
+export interface UserResponse {
+id: number
+token: string
+}
 ```
 
 
